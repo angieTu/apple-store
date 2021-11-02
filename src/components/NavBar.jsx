@@ -15,7 +15,7 @@ const NavBar = () => {
         <Nav.Item>
           <Nav.Link eventKey="link-2">Contacto</Nav.Link>
         </Nav.Item>
-      </Nav>{" "}
+      </Nav>
       <CartWidget />
     </Container>
   );
