@@ -1,12 +1,13 @@
 import Item from "./Item";
+import { CardGroup } from "react-bootstrap";
 
 const ItemList = ({ items }) => {
   return (
-    <div>
+    <CardGroup>
       {items.map((i) => (
         <Item item={i} key={i.id}></Item>
       ))}
-    </div>
+    </CardGroup>
   );
 };
 
