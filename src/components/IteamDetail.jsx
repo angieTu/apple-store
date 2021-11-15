@@ -1,15 +1,19 @@
-import { Card } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import ItemCount from "./ItemCount";
 
 const IteamDetail = ({ prod }) => {
   return (
     <>
       {prod && (
-        <Card className="text-center">
-          <Card.Header>{prod.title}</Card.Header>
+        <Card className="text-center card-detail">
+          <Card.Header>{prod.name}</Card.Header>
+          <Container>
+            <Card.Img src={prod.img} />
+          </Container>
           <Card.Body>
             <Card.Title>${prod.price}</Card.Title>
             <Card.Text>{prod.description}</Card.Text>
+            {prod.inch}" - {prod.capacity}GB Storage
             <ItemCount stock={prod.stock} />
           </Card.Body>
           <Card.Footer className="text-muted">{prod.stock} stock</Card.Footer>

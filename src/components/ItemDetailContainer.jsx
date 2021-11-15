@@ -1,7 +1,8 @@
 import ItemDetail from "./IteamDetail";
 import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-
+import Spinner from "react-bootstrap/Spinner";
+import { useParams } from "react-router-dom";
 import productos from "../data/data";
 
 const getItem = new Promise((res, rej) => {
@@ -12,13 +13,23 @@ const getItem = new Promise((res, rej) => {
 
 const ItemDetailContainer = () => {
   const [detail, setDetail] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const { itemId } = useParams();
+
   useEffect(() => {
-    getItem.then((res) => setDetail(res));
-  }, []);
+    getItem.then((res) => setDetail(res)).finally(() => setLoading(false));
+  }, [itemId]);
 
   return (
     <Container>
-      <ItemDetail prod={detail[1]} />
+      {loading ? (
+        <>
+          <Spinner animation="grow" /> LOADING...{" "}
+        </>
+      ) : (
+        <ItemDetail prod={detail.find((d) => d.id === parseInt(itemId))} />
+      )}
     </Container>
   );
 };

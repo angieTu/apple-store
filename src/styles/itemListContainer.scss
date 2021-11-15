@@ -1,0 +1,10 @@
+.item-list-container {
+  justify-content: center;
+  .item-card {
+    img {
+      object-fit: contain;
+      width: 50vh;
+      height: 30vh;
+    }
+  }
+}

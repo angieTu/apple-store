@@ -1,19 +1,36 @@
 import { Container } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
+
+import { NavLink } from "react-router-dom";
+
 import CartWidget from "./CartWidget";
 
 const NavBar = () => {
   return (
     <Container className="nav-container">
-      <Nav variant="tabs" defaultActiveKey="/home">
+      <NavLink className="nav-brand" to="/">
+        Tienda Apple
+      </NavLink>
+      <Nav variant="tabs" defaultActiveKey="/">
         <Nav.Item>
-          <Nav.Link href="/home">Home</Nav.Link>
+          <Nav.Link>
+            <NavLink to="/">Home</NavLink>
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1">Productos</Nav.Link>
+          <Nav.Link>
+            <NavLink to="/category/phone">iPhone</NavLink>
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-2">Contacto</Nav.Link>
+          <Nav.Link>
+            <NavLink to="/category/computer">Mac</NavLink>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link>
+            <NavLink to="/category/ipad">iPad</NavLink>
+          </Nav.Link>
         </Nav.Item>
       </Nav>
       <CartWidget />
