@@ -33,7 +33,9 @@ const NavBar = () => {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <CartWidget />
+      <NavLink to="/cart">
+        <CartWidget />
+      </NavLink>
     </Container>
   );
 };
