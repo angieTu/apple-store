@@ -1,5 +1,3 @@
-import ItemCount from "./ItemCount";
-
 import { Card, Col, Container } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
@@ -18,7 +16,6 @@ const Item = ({ item }) => {
         </Card.Body>
         <Card.Footer>
           USD {item.price}
-          <ItemCount stock={item.stock} />
           <Link to={`/item/${item.id}`}>Ver más</Link>
         </Card.Footer>
       </Card>
