@@ -17,12 +17,13 @@ const ItemDetailContainer = () => {
   const [loading, setLoading] = useState(true);
   const [showCount, setShowCount] = useState(true);
 
-  const { cart, setCart, isInCart } = useContext(CartContext);
+  const { cart, setCart, isInCart, obtenerCantidad } = useContext(CartContext);
 
   const { itemId } = useParams();
 
   const onAdd = (cant) => {
     setShowCount(false);
+
     const agregar = detail.find((e) => e.id === parseInt(itemId));
 
     if (isInCart(agregar.id) === false && cant > 0) {
@@ -39,6 +40,7 @@ const ItemDetailContainer = () => {
     }
   };
   console.log(cart);
+  obtenerCantidad(cart);
 
   useEffect(() => {
     getItem.then((res) => setDetail(res)).finally(() => setLoading(false));

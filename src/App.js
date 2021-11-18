@@ -6,7 +6,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
-import CartWidget from "./components/CartWidget";
+import Cart from "./components/Cart";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
               component={ItemListContainer}
             />
             <Route exact path="/item/:itemId" component={ItemDetailContainer} />
-            <Route exact path="/cart" component={CartWidget} />
+            <Route exact path="/cart" component={Cart} />
             <Route>
               <h1>Página no encontrada</h1>
             </Route>
