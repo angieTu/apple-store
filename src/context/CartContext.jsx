@@ -7,6 +7,22 @@ const CartContextProvider = ({ children }) => {
   const [total, setTotal] = useState(0);
   const [cantidad, setCantidad] = useState(0);
 
+  const onAdd = (cant, id, item) => {
+    const agregar = item.find((e) => e.id === parseInt(id));
+    if (isInCart(agregar.id) === false && cant > 0) {
+      agregar.cantidad = cant;
+      setCart([...cart, agregar]);
+    } else {
+      const nuevaCant = (agregar.cantidad += cant);
+      const nuevoElem = {
+        ...agregar,
+        cantidad: nuevaCant <= agregar.stock ? nuevaCant : agregar.stock,
+      };
+      const nuevoCart = cart.map((e) => (e.id === agregar.id ? nuevoElem : e));
+      setCart([...nuevoCart]);
+    }
+  };
+
   const isInCart = (id) => {
     const prod = cart.find((e) => e.id === parseInt(id));
     return prod === undefined ? false : true;
@@ -15,11 +31,11 @@ const CartContextProvider = ({ children }) => {
   const deleteItem = (id) => {
     const nuevoCart = cart.filter((e) => e.id !== id);
     setCart([...nuevoCart]);
-    obtenerTotal(cart);
-    obtenerCantidad(cart);
+    getTotal(cart);
+    getQuantity(cart);
   };
 
-  const obtenerCantidad = (prods) => {
+  const getQuantity = (prods) => {
     if (prods.length > 0) {
       const cant = (c) => c.cantidad;
       const arrayCant = prods.map(cant);
@@ -31,7 +47,7 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  const obtenerTotal = (prods) => {
+  const getTotal = (prods) => {
     if (prods.length > 0) {
       const costos = (c) => c.cantidad * c.price;
       const arrayPrices = prods.map(costos);
@@ -43,6 +59,10 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
+  const emptyCart = () => {
+    setCart([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -50,10 +70,12 @@ const CartContextProvider = ({ children }) => {
         setCart,
         isInCart,
         deleteItem,
-        obtenerTotal,
+        getQuantity,
         total,
-        obtenerCantidad,
+        getTotal,
         cantidad,
+        emptyCart,
+        onAdd,
       }}
     >
       {children}

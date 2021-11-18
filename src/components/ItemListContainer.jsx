@@ -1,8 +1,7 @@
+import { useState, useEffect, memo } from "react";
+import { useParams } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
 import productos from "../data/data";
 import ItemList from "./ItemList";
 
@@ -12,7 +11,7 @@ const getFetch = new Promise((res) => {
   }, 2000);
 });
 
-const ItemListContainer = () => {
+const ItemListContainer = memo(() => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -43,6 +42,6 @@ const ItemListContainer = () => {
       )}
     </>
   );
-};
+});
 
 export default ItemListContainer;

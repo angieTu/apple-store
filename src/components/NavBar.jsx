@@ -1,8 +1,6 @@
 import { Container } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
-
 import { NavLink } from "react-router-dom";
-
 import CartWidget from "./CartWidget";
 
 const NavBar = () => {
@@ -11,26 +9,26 @@ const NavBar = () => {
       <NavLink className="nav-brand" to="/">
         Tienda Apple
       </NavLink>
-      <Nav variant="tabs" defaultActiveKey="/">
+      <Nav variant="tabs">
         <Nav.Item>
-          <Nav.Link>
-            <NavLink to="/">Home</NavLink>
-          </Nav.Link>
+          <NavLink activeClassName="is-active" to="/">
+            Home
+          </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link>
-            <NavLink to="/category/phone">iPhone</NavLink>
-          </Nav.Link>
+          <NavLink activeClassName="is-active" to="/category/phone">
+            iPhone
+          </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link>
-            <NavLink to="/category/computer">Mac</NavLink>
-          </Nav.Link>
+          <NavLink activeClassName="is-active" to="/category/computer">
+            Mac
+          </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link>
-            <NavLink to="/category/ipad">iPad</NavLink>
-          </Nav.Link>
+          <NavLink activeClassName="is-active" to="/category/ipad">
+            iPad
+          </NavLink>
         </Nav.Item>
       </Nav>
       <NavLink to="/cart">

@@ -4,4 +4,12 @@
   align-items: center;
   justify-content: space-evenly;
   height: 66px;
+
+  .nav-item {
+    padding: 0 15px;
+
+    a.is-active {
+      color: blue;
+    }
+  }
 }

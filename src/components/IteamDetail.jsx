@@ -1,10 +1,7 @@
 import { Card, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
-
-import BtnBack from "./BtnBack";
 import ItemCount from "./ItemCount";
 
-const IteamDetail = ({ prod, onAdd, showCount }) => {
+const IteamDetail = ({ prod, id, item }) => {
   return (
     <>
       {prod && (
@@ -17,13 +14,7 @@ const IteamDetail = ({ prod, onAdd, showCount }) => {
             <Card.Title>${prod.price}</Card.Title>
             <Card.Text>{prod.description}</Card.Text>
             {prod.inch}" - {prod.capacity}GB Storage
-            {showCount ? (
-              <ItemCount stock={prod.stock} onAdd={onAdd} />
-            ) : (
-              <>
-                <BtnBack /> <Link to="/cart">Finalizar compra</Link>
-              </>
-            )}
+            <ItemCount stock={prod.stock} id={id} item={item} />
           </Card.Body>
           <Card.Footer className="text-muted">{prod.stock} stock</Card.Footer>
         </Card>
