@@ -1,19 +1,10 @@
-import { useState } from "react";
 import { Card, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import BtnBack from "./BtnBack";
 import ItemCount from "./ItemCount";
 
-const IteamDetail = ({ prod }) => {
-  const [count, setCount] = useState(0);
-  const [showCount, setShowCount] = useState(true);
-
-  const onAdd = (cant) => {
-    setCount(cant);
-    setShowCount(false);
-  };
-
+const IteamDetail = ({ prod, onAdd, showCount }) => {
   return (
     <>
       {prod && (
