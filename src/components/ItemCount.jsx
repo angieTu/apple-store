@@ -32,15 +32,17 @@ const ItemCount = ({ stock, id, item }) => {
               <span className="count"> {count} </span>
               <Button onClick={() => setCount(addItem)}>+</Button>
             </ButtonGroup>
-            <Button
-              variant="primary"
-              onClick={() => {
-                onAdd(count, id, item);
-                setShowCount(false);
-              }}
-            >
-              AGREGAR
-            </Button>
+            {count > 0 && (
+              <Button
+                variant="primary"
+                onClick={() => {
+                  onAdd(count, id, item);
+                  setShowCount(false);
+                }}
+              >
+                AGREGAR
+              </Button>
+            )}
           </div>
         </>
       ) : (

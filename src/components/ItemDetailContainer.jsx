@@ -2,15 +2,9 @@ import { useState, useEffect, useContext, memo } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
-import productos from "../data/data";
 import { CartContext } from "../context/CartContext";
 import ItemDetail from "./IteamDetail";
-
-const getItem = new Promise((res) => {
-  setTimeout(() => {
-    res(productos);
-  }, 2000);
-});
+import { getFirestore } from "../service/getFirestore";
 
 const ItemDetailContainer = memo(() => {
   const [detail, setDetail] = useState([]);
@@ -21,9 +15,20 @@ const ItemDetailContainer = memo(() => {
   const { itemId } = useParams();
 
   useEffect(() => {
-    getItem.then((res) => setDetail(res)).finally(() => setLoading(false));
-  }, [itemId]);
+    const dbQuery = getFirestore();
 
+    const itemCollection = dbQuery.collection("products");
+
+    const itemDetail = itemCollection.where("id", "==", parseInt(itemId));
+
+    itemDetail
+      .get()
+      .then((querySnapshot) => {
+        setDetail(querySnapshot.docs.map((doc) => doc.data()));
+      })
+      .finally(() => setLoading(false));
+  }, [itemId]);
+  console.log(detail);
   getQuantity(cart);
 
   return (
@@ -33,11 +38,7 @@ const ItemDetailContainer = memo(() => {
           <Spinner animation="grow" /> LOADING...
         </>
       ) : (
-        <ItemDetail
-          prod={detail.find((d) => d.id === parseInt(itemId))}
-          id={itemId}
-          item={detail}
-        />
+        <ItemDetail prod={detail[0]} id={itemId} item={detail} />
       )}
     </Container>
   );

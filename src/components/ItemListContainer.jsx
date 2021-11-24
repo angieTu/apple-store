@@ -2,14 +2,8 @@ import { useState, useEffect, memo } from "react";
 import { useParams } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
-import productos from "../data/data";
 import ItemList from "./ItemList";
-
-const getFetch = new Promise((res) => {
-  setTimeout(() => {
-    res(productos);
-  }, 2000);
-});
+import { getFirestore } from "../service/getFirestore";
 
 const ItemListContainer = memo(() => {
   const [items, setItems] = useState([]);
@@ -18,7 +12,30 @@ const ItemListContainer = memo(() => {
   const { categoryId } = useParams();
 
   useEffect(() => {
-    getFetch.then((res) => setItems(res)).finally(() => setLoading(false));
+    const dbQuery = getFirestore();
+
+    const itemCollection = dbQuery.collection("products");
+
+    {
+      categoryId !== undefined
+        ? itemCollection
+            .where("category", "==", categoryId)
+            .get()
+            .then((querySnapshot) => {
+              setItems(
+                querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+              );
+            })
+            .finally(() => setLoading(false))
+        : itemCollection
+            .get()
+            .then((querySnapshot) => {
+              setItems(
+                querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+              );
+            })
+            .finally(() => setLoading(false));
+    }
   }, [categoryId]);
 
   return (
@@ -30,13 +47,7 @@ const ItemListContainer = memo(() => {
       ) : (
         <>
           <Row xs={1} md={3} className="g-4 item-list-container">
-            {categoryId ? (
-              <ItemList
-                items={items.filter((item) => item.category === categoryId)}
-              />
-            ) : (
-              <ItemList items={items} />
-            )}
+            <ItemList items={items} />
           </Row>
         </>
       )}
