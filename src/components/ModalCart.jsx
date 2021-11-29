@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { OrdenContext } from "../context/OrdenContext";
+import { CartContext } from "../context/CartContext";
 
 const ModalCart = ({ handleShow, show, handleClose, cart, total }) => {
   const [showMsg, setShowMsg] = useState(true);
@@ -15,6 +16,8 @@ const ModalCart = ({ handleShow, show, handleClose, cart, total }) => {
     handlePhoneChange,
     idUsuario,
   } = useContext(OrdenContext);
+
+  const { emptyCart } = useContext(CartContext);
 
   return (
     <>
@@ -62,6 +65,7 @@ const ModalCart = ({ handleShow, show, handleClose, cart, total }) => {
                 onClick={(e) => {
                   handleShowMsg();
                   getOrder(e, cart, total);
+                  emptyCart();
                 }}
               >
                 Continuar
