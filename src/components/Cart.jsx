@@ -1,15 +1,21 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import "firebase/firestore";
 import { CartContext } from "../context/CartContext";
 import BtnBack from "./BtnBack";
 import Table from "react-bootstrap/Table";
+import ModalCart from "./ModalCart";
 
 const Cart = () => {
   const { cart, deleteItem, total, getTotal, getQuantity, emptyCart } =
     useContext(CartContext);
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   getTotal(cart);
   getQuantity(cart);
-
   return (
     <div>
       {cart.length > 0 ? (
@@ -37,12 +43,20 @@ const Cart = () => {
           </Table>
           TOTAL USD{total}
           <button onClick={emptyCart}>VACIAR CARRITO</button>
+          <button onClick={handleShow}>Confirmar compra</button>
         </div>
       ) : (
         <div>
           El carrito se encuentra vacio. <BtnBack />
         </div>
       )}
+      <ModalCart
+        handleShow={handleShow}
+        show={show}
+        handleClose={handleClose}
+        cart={cart}
+        total={total}
+      />
     </div>
   );
 };

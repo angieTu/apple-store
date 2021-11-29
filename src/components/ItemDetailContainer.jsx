@@ -28,7 +28,7 @@ const ItemDetailContainer = memo(() => {
       })
       .finally(() => setLoading(false));
   }, [itemId]);
-  console.log(detail);
+
   getQuantity(cart);
 
   return (
