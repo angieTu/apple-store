@@ -3,8 +3,9 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { OrdenContext } from "../context/OrdenContext";
 import { CartContext } from "../context/CartContext";
+import BtnBack from "./BtnBack";
 
-const ModalCart = ({ handleShow, show, handleClose, cart, total }) => {
+const ModalCart = ({ show, handleClose, cart, total }) => {
   const [showMsg, setShowMsg] = useState(true);
 
   const handleShowMsg = () => setShowMsg(false);
@@ -15,6 +16,8 @@ const ModalCart = ({ handleShow, show, handleClose, cart, total }) => {
     handleNameChange,
     handlePhoneChange,
     idUsuario,
+    name,
+    mail,
   } = useContext(OrdenContext);
 
   const { emptyCart } = useContext(CartContext);
@@ -26,14 +29,14 @@ const ModalCart = ({ handleShow, show, handleClose, cart, total }) => {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        className="modal-cart"
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
-
         {showMsg ? (
           <>
-            <Modal.Body>
+            <Modal.Header closeButton>
+              <Modal.Title>Ya casi es tuyo</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="form-modal-body">
               <label for="name">Nombre</label>
               <input
                 type="text"
@@ -74,13 +77,15 @@ const ModalCart = ({ handleShow, show, handleClose, cart, total }) => {
           </>
         ) : (
           <>
+            <Modal.Header>
+              <Modal.Title>Gracias por tu compra 🎉</Modal.Title>
+            </Modal.Header>
             <Modal.Body>
-              Gracias por su compra. Su numero de orden es {idUsuario}
+              Gracias por tu compra, {name}! <br /> Tu numero de orden es{" "}
+              {idUsuario} hemos enviado la confirmación de compra a {mail}
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Volver
-              </Button>
+              <BtnBack />
             </Modal.Footer>
           </>
         )}

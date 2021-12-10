@@ -1,0 +1,29 @@
+.cart-container {
+  position: relative;
+  padding-top: 85px;
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  //   .empty-cart-container {
+  //     display: flex;
+  //     flex-direction: column;
+  //   }
+
+  .total-cart {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .trash-icon {
+    cursor: pointer;
+  }
+
+  .btn-back {
+    margin-top: 20px;
+
+    a {
+      color: #fff;
+    }
+  }
+}

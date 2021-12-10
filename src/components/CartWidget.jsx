@@ -6,7 +6,7 @@ const CartWidget = () => {
   const { cantidad } = useContext(CartContext);
 
   return (
-    <div>
+    <div className="cart-widget">
       <Icon />
       {cantidad >= 1 && <span>{cantidad}</span>}
     </div>

@@ -11,10 +11,9 @@ const Item = ({ item }) => {
         </Container>
         <Card.Body>
           <Card.Title> {item.name}</Card.Title>
-
           <Card.Text>{item.description}</Card.Text>
         </Card.Body>
-        <Card.Footer>
+        <Card.Footer className="item-footer">
           USD {item.price}
           <Link to={`/item/${item.id}`}>Ver más</Link>
         </Card.Footer>

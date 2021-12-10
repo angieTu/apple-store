@@ -4,6 +4,10 @@ import { CartContext } from "../context/CartContext";
 import BtnBack from "./BtnBack";
 import Table from "react-bootstrap/Table";
 import ModalCart from "./ModalCart";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { BsTrash } from "react-icons/bs";
+import Image from "react-bootstrap/Image";
 
 const Cart = () => {
   const { cart, deleteItem, total, getTotal, getQuantity, emptyCart } =
@@ -16,10 +20,11 @@ const Cart = () => {
 
   getTotal(cart);
   getQuantity(cart);
+
   return (
-    <div>
+    <div className="cart-container">
       {cart.length > 0 ? (
-        <div>
+        <>
           <Table responsive>
             <thead>
               <tr>
@@ -33,21 +38,35 @@ const Cart = () => {
                 <tr key={e.id}>
                   <td>{e.name}</td>
                   <td>{e.cantidad}</td>
-                  <td>USD{e.price * e.cantidad}</td>
+                  <td>USD {e.price * e.cantidad}</td>
                   <td>
-                    <button onClick={() => deleteItem(e.id)}>X</button>
+                    <BsTrash
+                      className="trash-icon"
+                      onClick={() => deleteItem(e.id)}
+                    />
                   </td>
                 </tr>
               ))}
             </tbody>
           </Table>
-          TOTAL USD{total}
-          <button onClick={emptyCart}>VACIAR CARRITO</button>
-          <button onClick={handleShow}>Confirmar compra</button>
-        </div>
+          <div className="total-cart">TOTAL USD {total}</div>
+
+          <ButtonGroup className="btn-group">
+            <Button size="sm" onClick={emptyCart}>
+              Vaciar carrito
+            </Button>
+            <Button size="sm" variant="primary" onClick={handleShow}>
+              Confirmar compra
+            </Button>
+          </ButtonGroup>
+        </>
       ) : (
-        <div>
-          El carrito se encuentra vacio. <BtnBack />
+        <div className="empty-cart-container">
+          <Image src="https://imgur.com/nWxWs4z.png" fluid />
+          <br />
+          El carrito se encuentra vacío.
+          <br />
+          <BtnBack />
         </div>
       )}
       <ModalCart

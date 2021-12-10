@@ -23,17 +23,19 @@ const ItemCount = ({ stock, id, item }) => {
   };
 
   return (
-    <div>
+    <div className="btns-count">
       {showCount ? (
         <>
-          <div className="">
-            <ButtonGroup className="me-2" aria-label="Second group">
-              <Button onClick={() => setCount(removeItem)}>-</Button>{" "}
+          <ButtonGroup className="me-2" aria-label="Second group" vertical>
+            <ButtonGroup>
+              <Button onClick={() => setCount(removeItem)}>-</Button>
               <span className="count"> {count} </span>
               <Button onClick={() => setCount(addItem)}>+</Button>
             </ButtonGroup>
+
             {count > 0 && (
               <Button
+                className="btn-add"
                 variant="primary"
                 onClick={() => {
                   onAdd(count, id, item);
@@ -43,13 +45,13 @@ const ItemCount = ({ stock, id, item }) => {
                 AGREGAR
               </Button>
             )}
-          </div>
+          </ButtonGroup>
         </>
       ) : (
-        <>
+        <ButtonGroup vertical>
           <BtnBack />
           <Link to="/cart">Finalizar compra</Link>
-        </>
+        </ButtonGroup>
       )}
     </div>
   );

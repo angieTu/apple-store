@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from "react";
 import { useParams } from "react-router-dom";
-import { Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import ItemList from "./ItemList";
 import { getFirestore } from "../service/getFirestore";
@@ -39,19 +39,17 @@ const ItemListContainer = memo(() => {
   }, [categoryId]);
 
   return (
-    <>
+    <Container className="item-list-container">
       {loading ? (
         <>
-          <Spinner animation="grow" /> LOADING...
+          <Spinner animation="border" variant="primary" />
         </>
       ) : (
-        <>
-          <Row xs={1} md={3} className="g-4 item-list-container">
-            <ItemList items={items} />
-          </Row>
-        </>
+        <Row xs={1} md={3} className="g-4">
+          <ItemList items={items} />
+        </Row>
       )}
-    </>
+    </Container>
   );
 });
 

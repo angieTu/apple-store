@@ -36,12 +36,15 @@ const CartContextProvider = ({ children }) => {
   };
 
   const getQuantity = (prods) => {
+    // if (prods.length > 0) {
+    //   const cant = (c) => c.cantidad;
+    //   const arrayCant = prods.map(cant);
+    //   const sumaTotal = (sumaParcial, numero) => sumaParcial + numero;
+    //   const resultado = arrayCant.reduce(sumaTotal);
+    //   setCantidad(resultado);
+    // }
     if (prods.length > 0) {
-      const cant = (c) => c.cantidad;
-      const arrayCant = prods.map(cant);
-      const sumaTotal = (sumaParcial, numero) => sumaParcial + numero;
-      const resultado = arrayCant.reduce(sumaTotal);
-      setCantidad(resultado);
+      setCantidad(prods.length);
     } else {
       setCantidad(0);
     }

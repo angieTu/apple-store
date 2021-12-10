@@ -13,7 +13,7 @@ const IteamDetail = ({ prod, id, item }) => {
           <Card.Body>
             <Card.Title>${prod.price}</Card.Title>
             <Card.Text>{prod.description}</Card.Text>
-            {prod.inch}" - {prod.capacity}GB Storage
+            {prod.inch}" inch - {prod.capacity}GB Storage
             <ItemCount stock={prod.stock} id={id} item={item} />
           </Card.Body>
           <Card.Footer className="text-muted">{prod.stock} stock</Card.Footer>

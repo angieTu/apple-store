@@ -1,10 +1,39 @@
 .item-list-container {
   justify-content: center;
+  position: relative;
+  padding-top: 85px;
+
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
+  }
+
   .item-card {
-    img {
-      object-fit: contain;
-      width: 50vh;
-      height: 30vh;
+    &:hover {
+      transform: scale3d(1.01, 1.01, 1.01);
+      transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+    }
+    .card {
+      box-shadow: 2px 4px 12px rgb(0 0 0 / 8%);
+      &:hover {
+        box-shadow: 2px 4px 16px rgb(0 0 0 / 16%);
+      }
+
+      img {
+        object-fit: contain;
+        width: 50vh;
+        height: 30vh;
+      }
+      .card-text {
+        color: #86868b;
+      }
+
+      .item-footer {
+        display: flex;
+        flex-direction: column;
+        background-color: #f5f5f7;
+        color: #86868b;
+      }
     }
   }
 }

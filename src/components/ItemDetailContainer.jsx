@@ -32,10 +32,10 @@ const ItemDetailContainer = memo(() => {
   getQuantity(cart);
 
   return (
-    <Container>
+    <Container className="item-detail-container">
       {loading ? (
         <>
-          <Spinner animation="grow" /> LOADING...
+          <Spinner animation="border" variant="primary" />
         </>
       ) : (
         <ItemDetail prod={detail[0]} id={itemId} item={detail} />

@@ -1,11 +1,10 @@
-import { Container } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import CartWidget from "./CartWidget";
 
 const NavBar = () => {
   return (
-    <Container className="nav-container">
+    <div className="nav-container">
       <NavLink className="nav-brand" to="/">
         Tienda Apple
       </NavLink>
@@ -34,7 +33,7 @@ const NavBar = () => {
       <NavLink to="/cart">
         <CartWidget />
       </NavLink>
-    </Container>
+    </div>
   );
 };
 

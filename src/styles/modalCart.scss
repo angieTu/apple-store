@@ -1,0 +1,22 @@
+.modal-backdrop.show {
+  opacity: 0.8;
+}
+
+.modal-cart {
+  .form-modal-body {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-family: "Helvetica Light";
+      font-weight: 600;
+    }
+  }
+  .btn-back {
+    margin-bottom: 10px;
+
+    a {
+      color: #fff;
+    }
+  }
+}

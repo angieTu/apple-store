@@ -1,7 +1,44 @@
-.card-detail {
-  img {
-    object-fit: contain;
-    width: 50vh;
-    height: 30vh;
+.item-detail-container {
+  position: relative;
+  padding-top: 85px;
+
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .card-detail {
+    .card-text {
+      color: #86868b;
+    }
+    img {
+      object-fit: contain;
+      width: 50vh;
+      height: 30vh;
+    }
+    .btns-count {
+      min-height: 90px;
+      margin-top: 10px;
+
+      .btn-add {
+        margin-top: 5px;
+      }
+
+      button {
+        border-radius: 0.25rem;
+        font-size: 13px;
+      }
+      .count {
+        padding: 5px;
+      }
+
+      .btn-back {
+        margin-bottom: 10px;
+
+        a {
+          color: #fff;
+        }
+      }
+    }
   }
 }
