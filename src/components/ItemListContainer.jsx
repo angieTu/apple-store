@@ -39,17 +39,19 @@ const ItemListContainer = memo(() => {
   }, [categoryId]);
 
   return (
-    <Container className="item-list-container">
-      {loading ? (
-        <>
-          <Spinner animation="border" variant="primary" />
-        </>
-      ) : (
-        <Row xs={1} md={3} className="g-4">
-          <ItemList items={items} />
-        </Row>
-      )}
-    </Container>
+    <>
+      <Container className="item-list-container">
+        {loading ? (
+          <>
+            <Spinner animation="border" variant="primary" />
+          </>
+        ) : (
+          <Row xs={1} md={3} className="g-4">
+            <ItemList items={items} />
+          </Row>
+        )}
+      </Container>
+    </>
   );
 });
 

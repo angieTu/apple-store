@@ -1,8 +1,16 @@
+import { useState } from "react";
 import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import CartWidget from "./CartWidget";
 
+import UserNav from "./UserNav";
+
 const NavBar = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div className="nav-container">
       <NavLink className="nav-brand" to="/">
@@ -33,6 +41,8 @@ const NavBar = () => {
       <NavLink to="/cart">
         <CartWidget />
       </NavLink>
+
+      <UserNav show={show} handleClose={handleClose} handleShow={handleShow} />
     </div>
   );
 };
