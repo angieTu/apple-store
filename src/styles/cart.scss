@@ -7,6 +7,14 @@
   flex-direction: column;
   min-height: calc(100vh - 155px);
 
+  .btn-group {
+    width: 50%;
+    margin: 0 auto;
+    button {
+      margin: 0 8px;
+    }
+  }
+
   .total-cart {
     display: flex;
     flex-direction: row-reverse;

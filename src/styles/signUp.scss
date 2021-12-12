@@ -3,4 +3,13 @@
   position: relative;
   padding-top: 85px;
   min-height: calc(100vh - 155px);
+
+  form {
+    width: 30%;
+    margin: 0 auto;
+
+    button {
+      margin-top: 15px;
+    }
+  }
 }

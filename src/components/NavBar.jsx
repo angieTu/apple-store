@@ -13,9 +13,6 @@ const NavBar = () => {
 
   return (
     <div className="nav-container">
-      <NavLink className="nav-brand" to="/">
-        Tienda Apple
-      </NavLink>
       <Nav variant="tabs">
         <Nav.Item>
           <NavLink activeClassName="is-active" to="/">

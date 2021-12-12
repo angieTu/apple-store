@@ -22,9 +22,7 @@ const UserNav = ({ handleShow, handleClose, show }) => {
           <Dropdown.Item onClick={signoutUser}>LogOut</Dropdown.Item>
         </DropdownButton>
       ) : (
-        <Button variant="primary" onClick={handleShow}>
-          <BsFillPersonFill />
-        </Button>
+        <BsFillPersonFill className="icon-user" onClick={handleShow} />
       )}
       <Login show={show} handleClose={handleClose} />
     </div>

@@ -34,34 +34,25 @@ const Login = ({ show, handleClose }) => {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleLogin}>
-            <label>
-              Email
-              <input type="email" name="email" />
-            </label>
-            <label>
-              Password
-              <input type="password" name="password" />
-            </label>
-            <button type="submit" onClick={handleClose}>
-              Sign In
-            </button>
+            <label>Email</label> <input type="email" name="email" />
+            <label>Password</label> <input type="password" name="password" />
+            <br />
+            {error ? (
+              <Button type="submit">Sign In</Button>
+            ) : (
+              <Button type="submit" onClick={handleClose}>
+                Sign In
+              </Button>
+            )}
           </form>
           <p>
-            If you´re not registered, do it{" "}
+            Si no estás registrado, hazlo{" "}
             <Link to="/signup" onClick={handleClose}>
-              {" "}
-              here
+              aquí
             </Link>
+            .
           </p>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
