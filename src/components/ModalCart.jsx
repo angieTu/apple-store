@@ -8,7 +8,9 @@ import BtnBack from "./BtnBack";
 const ModalCart = ({ show, handleClose, cart, total }) => {
   const [showMsg, setShowMsg] = useState(true);
 
-  const handleShowMsg = () => setShowMsg(false);
+  const handleShowMsg = () => {
+    setShowMsg(false);
+  };
 
   const {
     getOrder,
@@ -37,42 +39,55 @@ const ModalCart = ({ show, handleClose, cart, total }) => {
               <Modal.Title>Ya casi es tuyo</Modal.Title>
             </Modal.Header>
             <Modal.Body className="form-modal-body">
-              <label for="name">Nombre</label>
-              <input
-                type="text"
-                id="name"
-                required
-                onChange={handleNameChange}
-              />
-              <label for="phone">Teléfono</label>
-              <input
-                type="tel"
-                id="phone"
-                required
-                onChange={handlePhoneChange}
-              />
-              <label type="mail">E-mail</label>
-              <input
-                type="email"
-                id="mail"
-                required
-                onChange={handleMailChange}
-              />
+              <form>
+                <label for="name">Nombre</label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  onChange={handleNameChange}
+                />
+                <label for="phone">Teléfono</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  required
+                  onChange={handlePhoneChange}
+                />
+                <label type="mail">E-mail</label>
+                <input
+                  type="email"
+                  id="mail"
+                  required
+                  onChange={handleMailChange}
+                />
+              </form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Volver
-              </Button>
-              <Button
-                variant="primary"
-                onClick={(e) => {
-                  handleShowMsg();
-                  getOrder(e, cart, total);
-                  emptyCart();
-                }}
-              >
-                Continuar
-              </Button>
+              {!mail || !name ? (
+                <Button
+                  disabled
+                  variant="primary"
+                  onClick={(e) => {
+                    handleShowMsg();
+                    getOrder(e, cart, total);
+                    emptyCart();
+                  }}
+                >
+                  Continuar
+                </Button>
+              ) : (
+                <Button
+                  variant="primary"
+                  onClick={(e) => {
+                    handleShowMsg();
+                    getOrder(e, cart, total);
+                    emptyCart();
+                  }}
+                >
+                  Continuar
+                </Button>
+              )}
             </Modal.Footer>
           </>
         ) : (
